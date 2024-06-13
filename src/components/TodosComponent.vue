@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- En-tête (titre, input) -->
-    <TodoHeader />
+    <TodoHeader v-on:add-todo="addTodo" />
     <!-- /En-tête (titre, input) -->
 
     <!-- Liste des tâches -->
@@ -32,6 +32,7 @@
 import type { Todo } from '@/@types'
 import TodoFooter from '@/components/TodoFooter.vue'
 import TodoHeader from '@/components/TodoHeader.vue'
+import { nanoid } from 'nanoid'
 import { ref } from 'vue'
 
 const todos = ref<Todo[]>([
@@ -39,6 +40,14 @@ const todos = ref<Todo[]>([
   { id: 'ab81b122-4df5-47a3-982d-cbc928c35a18', title: 'Ma tâche 2', completed: false },
   { id: '8aed622a-90b1-4976-a430-97b6fc74b0a6', title: 'Ma tâche 3', completed: false }
 ])
+
+function addTodo(value: string) {
+  todos.value.push({
+    id: nanoid(),
+    title: value,
+    completed: false
+  })
+}
 </script>
 
 <style></style>
