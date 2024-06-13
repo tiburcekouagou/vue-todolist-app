@@ -12,22 +12,10 @@
       </div>
 
       <ul class="todo-list">
-        <li>
+        <li v-for="todo in todos" :key="todo.id">
           <div class="view">
-            <input type="checkbox" id="" class="toggle" />
-            <label for="">Tâche 1</label>
-          </div>
-        </li>
-        <li>
-          <div class="view">
-            <input type="checkbox" id="" class="toggle" />
-            <label for="">Tâche 2</label>
-          </div>
-        </li>
-        <li>
-          <div class="view">
-            <input type="checkbox" id="" class="toggle" />
-            <label for="">Tâche 3</label>
+            <input type="checkbox" :id="todo.id" class="toggle" />
+            <label :for="todo.id">{{ todo.title }}</label>
           </div>
         </li>
       </ul>
@@ -43,6 +31,13 @@
 <script setup lang="ts">
 import TodoFooter from '@/components/TodoFooter.vue'
 import TodoHeader from '@/components/TodoHeader.vue'
+import { ref } from 'vue'
+
+const todos = ref([
+  { id: 'cf972fd6-8ca0-4c38-af79-b726e367d618', title: 'Ma tâche 1', completed: false },
+  { id: 'ab81b122-4df5-47a3-982d-cbc928c35a18', title: 'Ma tâche 2', completed: false },
+  { id: '8aed622a-90b1-4976-a430-97b6fc74b0a6', title: 'Ma tâche 3', completed: false }
+])
 </script>
 
 <style></style>
